@@ -11,6 +11,9 @@
         $sql = "UPDATE `domicilio` SET cp=".$_POST["cp"].", calle='".$_POST["calle"]."', n_ext=".$_POST["n_ext"].", n_int=".$_POST["n_int"].", colonia='".$_POST["colonia"]."', ciudad='".$_POST["ciudad"]."', estado='".$_POST["estado"]."' WHERE `domicilio`.`idu` =".$_SESSION['idu'];
         //Verificamos consulta
         if ($conexion->query($sql) === TRUE){
+            include ("conexion2.php");
+        $conexion2 = conectar2();
+        $conexion2->query($sql);
             //Actualizamos variables de sesión
             $_SESSION['autentificado']=TRUE;
             $_SESSION['cp']=$_POST["cp"];

@@ -73,6 +73,7 @@
     $result=0;
     $sql = "SELECT * FROM carrito LEFT JOIN producto ON carrito.idp = producto.idp WHERE carrito.idu=".@$_SESSION['idu'];
     $result = $conexion->query($sql);
+    
     if(!empty($result) && $result->num_rows > 0){
           $i=0;
         while ($row = $result->fetch_assoc()){

@@ -28,6 +28,7 @@
             //Sentencia de consulta SQL
             $sql = "SELECT * FROM usuario LEFT JOIN domicilio ON usuario.idu = domicilio.idu WHERE usuario.idu=".$_GET['id'];
             $result = $conexion->query($sql);
+            
             if(!empty($result) && $result->num_rows > 0){
                 $_SESSION['idu-act']=$_GET['id'];
                 //Recorremos cada registro y obtenemos los valores

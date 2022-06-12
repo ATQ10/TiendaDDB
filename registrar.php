@@ -30,6 +30,7 @@
         //Sentencia de consulta SQL
 	    $sql = "SELECT * FROM `usuario` WHERE `email`='".$email."'";
         $result = $conexion->query($sql);
+		
         if(!empty($result) && $result->num_rows > 0){
 ?>
     <script language="JavaScript">
@@ -47,6 +48,9 @@
                 $tipo="normal";
 	        $sql = "INSERT INTO `usuario` (`idu`, `nombre`, `ape_pat`, `ape_mat`, `fecha`, `email`, `telefono`, `tipo`, `password`, `gustos`) VALUES (NULL, '".$nombre."', '".$ape_pat."', '".$ape_mat."', '".$fecha."', '".$email."', '".$telefono."', '".$tipo."', '".md5($password)."', '')";
 	        $result = $conexion->query($sql);
+			include ("conexion2.php");
+        $conexion2 = conectar2();
+        $conexion2->query($sql);
 	        if($result){
 	        	if(@$_SESSION['tipo']!="admin"){
 ?>

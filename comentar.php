@@ -25,6 +25,10 @@
         $sql = "INSERT INTO `comentar`(`idu`, `idp`, `comentario`, `fecha_hora`) VALUES (".$_SESSION['idu'].",'".$id."','".$comentario."','".$fecha."')";
 
         $result = $conexion->query($sql);
+        
+        include ("conexion2.php");
+        $conexion2 = conectar2();
+        $conexion2->query($sql);
         if($result){
 
     echo "<script language=\"JavaScript\">

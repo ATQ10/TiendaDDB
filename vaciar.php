@@ -17,6 +17,9 @@
     //echo $sql;
     //Verifica y ejecuta consulta
     if ($conexion->query($sql) === TRUE){
+        include ("conexion2.php");
+        $conexion2 = conectar2();
+        $conexion2->query($sql);
         echo "<script type=\"text/javascript\">alert(\"Carrito vaciado exitosamente\");</script>";
         echo "<script type=\"text/javascript\">window.location=\"carrito.php\";</script>";
     } else {

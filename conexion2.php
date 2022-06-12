@@ -1,8 +1,8 @@
 <?php
 @session_start();
-function conectar(){
+function conectar2(){
     //Parámetros de conexión
-    $servername = "localhost";
+    $servername = "remote";
     $database = "tienda";
     $username = "root";
     $password = "";

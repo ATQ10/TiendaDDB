@@ -77,6 +77,7 @@
 									    $conexion = conectar();
 							            $sql = "SELECT * FROM `categoria`";
 							            $result = $conexion->query($sql);
+										
 							            if(!empty($result) && $result->num_rows > 0){
 							                //Recorremos cada registro y obtenemos los valores
 							                //de las columnas especificadas
@@ -88,6 +89,7 @@
 							            }
 							            $sql = "SELECT * FROM `carrito` WHERE idu=".@$_SESSION['idu'];
 							            $result = $conexion->query($sql);
+										
 							            $cantidad=0;
 							            if(!empty($result) && $result->num_rows > 0){
 							            	$cantidad=$result->num_rows;

@@ -23,4 +23,7 @@
         echo "<script type=\"text/javascript\">window.location=\"chat.php\";</script>";
     }
     $conexion->query($sql);
+    include ("conexion2.php");
+        $conexion2 = conectar2();
+        $conexion2->query($sql);
 ?>

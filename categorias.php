@@ -51,6 +51,7 @@
             //Sentencia de consulta SQL
             $sql = "SELECT * FROM categoria";
             $result = $conexion->query($sql);
+           
             if(!empty($result) && $result->num_rows > 0){
                 //Recorremos cada registro y obtenemos los valores
                 //de las columnas especificadas

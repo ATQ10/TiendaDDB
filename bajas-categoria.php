@@ -10,6 +10,9 @@
     $sql = "DELETE FROM categoria WHERE idcat=".$_GET['id'];
     //echo $sql;
     //Verifica y ejecuta consulta
+    include ("conexion2.php");
+        $conexion2 = conectar2();
+        $conexion2->query($sql);
     if ($conexion->query($sql) === TRUE){
         echo "<script type=\"text/javascript\">alert(\"Eliminado\");</script>";
         echo "<script type=\"text/javascript\">window.location=\"categorias.php\";</script>";
@@ -19,4 +22,5 @@
         echo "<script type=\"text/javascript\">window.history.back();</script>";
     }
     mysqli_close($conexion);
+    mysqli_close($conexion2);
 ?>

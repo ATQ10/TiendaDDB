@@ -16,7 +16,11 @@
     $sql2 = "UPDATE `domicilio` SET cp=".$_POST["cp"].", calle='".$_POST["calle"]."', n_ext=".$_POST["n_ext"].", n_int=".$_POST["n_int"].", colonia='".$_POST["colonia"]."', ciudad='".$_POST["ciudad"]."', estado='".$_POST["estado"]."' WHERE `domicilio`.`idu` =".$_SESSION['idu-act'];
     //Verificamos consulta
     verificarDomicilio();
+    include ("conexion2.php");
+        $conexion2 = conectar2();
+        $conexion2->query($sql);
     if ($conexion->query($sql) === TRUE){
+        $conexion2->query($sql2);
         if($conexion->query($sql2) === TRUE){
             echo "<script type=\"text/javascript\">alert(\"Actualizado\");</script>";
             echo "<script type=\"text/javascript\">window.location=\"administrar.php\";</script>";
@@ -38,6 +42,7 @@
         //Sentencia de consulta SQL
         $sql = "SELECT * FROM `domicilio` WHERE `idu`='".$_SESSION['idu-act']."'";
         $result = $conexion->query($sql);
+        
         if($result->num_rows > 0){
             /*
              while ($row = $result->fetch_assoc()){
@@ -54,6 +59,9 @@
         else{
             $sql = "INSERT INTO `domicilio` (`idu`, `cp`, `calle`, `n_ext`, `n_int`, `colonia`, `ciudad`, `estado`) VALUES ('".$_SESSION['idu-act']."', '', NULL, '', '', NULL, NULL, NULL)";
             $result = $conexion->query($sql);
+            include ("conexion2.php");
+        $conexion2 = conectar2();
+        $conexion2->query($sql);
             /*
             if($result)
                     echo "<script type=\"text/javascript\">alert(\"Generado\");</script>";

@@ -22,6 +22,9 @@
     //Sentencia de consulta SQL
     $sql = "SELECT * FROM producto LEFT JOIN categoria ON producto.idcat = categoria.idcat WHERE producto.idp=".$_GET['id'];
     $result = $conexion->query($sql);
+    include ("conexion2.php");
+        $conexion2 = conectar2();
+        $conexion2->query($sql);
     if(!empty($result) && $result->num_rows > 0){
         //Recorremos cada registro y obtenemos los valores
         //de las columnas especificadas
@@ -48,6 +51,7 @@
             <?php
             $sql = "SELECT * FROM `categoria`";
             $result = $conexion->query($sql);
+           
             if(!empty($result) && $result->num_rows > 0){
                 //Recorremos cada registro y obtenemos los valores
                 //de las columnas especificadas

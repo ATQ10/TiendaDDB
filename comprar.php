@@ -52,11 +52,15 @@
         }
     }
     //Actualizamos valores
+    include ("conexion2.php");
         for($i=0;$i<@count($item);$i++){
             if($item[$i]!=""){
                 $nuevaExistencia[$item[$i]]-=$cantidad[$i];
                 $sql = "UPDATE `producto` SET `existencia` = '".$nuevaExistencia[$item[$i]]."' WHERE `producto`.`idp` = ".$item[$i];
                 $conexion->query($sql);
+                
+        $conexion2 = conectar2();
+        $conexion2->query($sql);
             }
         }
     //Insertamos nueva compra    
@@ -64,6 +68,7 @@
     $fecha=date("Y-m-d H:i:s");
      $sql = "INSERT INTO `compra` (`idc`, `idu`, `monto`, `cantidad`, `fecha_hora`) VALUES (NULL, '".$_SESSION['idu']."', '".$total."', '".$can."', '".$fecha."');";
      $conexion->query($sql);
+        $conexion2->query($sql);
      
     //Extraemos id de la compra
      $sql = "SELECT idc FROM compra WHERE fecha_hora='".$fecha."'";
@@ -78,12 +83,14 @@
     for($i=0;$i<@count($item);$i++){
         $sql = "INSERT INTO `contener` (`idc`, `idp`, `cantidad`) VALUES ('".$idCompra."', '".$item[$i]."', '".$cantidad[$i]."');";
         $conexion->query($sql);
+        $conexion2->query($sql);
     }
     //Vaciamos carrito   
     $sql = "DELETE FROM carrito WHERE idu=".$_SESSION['idu'];
     //echo $sql;
     //Verifica y ejecuta consulta
     if ($conexion->query($sql) === TRUE){
+        $conexion2->query($sql);
         echo "<script type=\"text/javascript\">alert(\"Venta exitosa, a continuación recibirá un correo electrónico.\");</script>";
 
         //Preparamos mensaje;

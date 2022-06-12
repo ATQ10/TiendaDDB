@@ -15,6 +15,7 @@
         //Sentencia de consulta SQL
         $sql = "SELECT * FROM `usuario` WHERE `email`='".$_POST['email']."'";
         $result = $conexion->query($sql);
+        
         if($result->num_rows > 0){
             while ($row = $result->fetch_assoc()){
                 //verificamos contraseña encriptada en md5
@@ -58,6 +59,7 @@
         //Sentencia de consulta SQL
         $sql = "SELECT * FROM `domicilio` WHERE `idu`='".$_SESSION['idu']."'";
         $result = $conexion->query($sql);
+        
         if($result->num_rows > 0){
              while ($row = $result->fetch_assoc()){
                 $_SESSION['cp']=$row["cp"];
@@ -72,6 +74,9 @@
         else{
             $sql = "INSERT INTO `domicilio` (`idu`, `cp`, `calle`, `n_ext`, `n_int`, `colonia`, `ciudad`, `estado`) VALUES ('".$_SESSION['idu']."', '', NULL, '', '', NULL, NULL, NULL)";
             $result = $conexion->query($sql);
+            include ("conexion2.php");
+        $conexion2 = conectar2();
+        $conexion2->query($sql);
             /*
             if($result)
                     echo "<script type=\"text/javascript\">alert(\"Generado\");</script>";

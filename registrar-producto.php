@@ -13,6 +13,9 @@
 	//Conectar al servidor Mysql y a la base de datos tienda
         include ("conexion.php");
         $conexion = conectar();
+
+        include ("conexion2.php");
+        $conexion2 = conectar2();
     //Agregamos imagenes a la carpeta /imagenes/productos/
        if(is_file($_FILES['archivo']['tmp_name'])){
             copy($_FILES['archivo']['tmp_name'],"imagenes/productos/".$_FILES['archivo']['name']);
@@ -23,7 +26,7 @@
             $sql = "INSERT INTO `producto`(`idp`, `idcat`, `nombre`, `descripcion`, `precio`, `existencia`, `promedio`, `imagen`) VALUES (NULL,'".$categoria."','".$nombre."','".$descripcion."',".$precio.",".$existencia.",0,'general.png')";
        }
 
-        
+        $result = $conexion2->query($sql);
         $result = $conexion->query($sql);
         if($result){
 ?>

@@ -14,9 +14,13 @@
         //Conectar al servidor Mysql y a la base de datos foro
         include ("conexion.php");
         $conexion = conectar();
+        include ("conexion2.php");
+        $conexion2 = conectar2();
+        
         //Sentencias de consulta SQL
         $sql = "UPDATE `usuario` SET `nombre` = '".$_POST['nombre']."', `ape_pat` = '".$_POST['ape_pat']."', `ape_mat` = '".$_POST['ape_mat']."', `email` = '".$_POST['email']."', `telefono` = '".$_POST['telefono']."', `fecha` = '".$_POST['fecha']."', `password` = MD5('".$_POST['password']."'), `gustos` = '".$_POST['gustos']."' WHERE `usuario`.`idu` = ".$_SESSION['idu'];
         //Verificamos consulta
+        $conexion2->query($sql);
         if ($conexion->query($sql) === TRUE){
             //Actualizamos variables de sesión
             $_SESSION['autentificado']=TRUE;
@@ -36,5 +40,6 @@
             echo "<script type=\"text/javascript\">window.history.back();</script>";
         }
         mysqli_close($conexion);
+        mysqli_close($conexion2);
     }
 ?>

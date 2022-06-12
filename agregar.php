@@ -22,6 +22,9 @@
         $sql = "INSERT INTO `carrito` (`idp`, `idu`, `cantidad`) VALUES ('".$id."', '".$_SESSION['idu']."', '".$cantidad."');";
 
         $result = $conexion->query($sql);
+        include ("conexion2.php");
+        $conexion2 = conectar2();
+        $conexion2->query($sql);
         if($result){
 
     echo "<script language=\"JavaScript\">

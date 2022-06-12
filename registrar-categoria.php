@@ -17,6 +17,9 @@
 
         
         $result = $conexion->query($sql);
+        include ("conexion2.php");
+        $conexion2 = conectar2();
+        $conexion2->query($sql);
         if($result){
 ?>
     <script language="JavaScript">

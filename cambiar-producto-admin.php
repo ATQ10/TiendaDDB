@@ -19,6 +19,9 @@
     
     //Verificamos consulta
     if ($conexion->query($sql) === TRUE){
+        include ("conexion2.php");
+        $conexion2 = conectar2();
+        $conexion2->query($sql);
         echo "<script type=\"text/javascript\">alert(\"Actualizado\");</script>";
         echo "<script type=\"text/javascript\">window.location=\"cambiar-producto.php?id=".$_SESSION['idc-act']."\";</script>";
         $_SESSION['idc-act']=0;
